@@ -17,6 +17,9 @@ if [ ! -d "$SRC_DEST_DIR" ]; then
     exit 1
 fi
 
+#Copia o arquivo main para a pasta src
+cp -v main.c "$SRC_DEST_DIR/"
+
 # 1. Copia arquivos principais
 echo "Copiando lv_conf.h e CMakeLists.txt para $DEST_DIR..."
 cp -v lv_conf.h "$DEST_DIR/"
