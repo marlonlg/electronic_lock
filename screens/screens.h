@@ -5,7 +5,8 @@
 #include <stdio.h>
 #include <string.h>
 #include <time.h>
-#include "src/comm/socket_driver.h"
+#include "socket_driver.h"
+#define JSMN_STATIC
 #include "jsmn.h"
 
 
