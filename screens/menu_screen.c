@@ -4,9 +4,6 @@
 typedef struct _objects_t {
     lv_obj_t *scr_menu;
     lv_obj_t *obj0;
-    lv_obj_t *obj5;
-    lv_obj_t *obj6;
-    lv_obj_t *btn_return_2;
 } objects_t;
 
 static objects_t menu_objects;
@@ -32,16 +29,6 @@ static void event_handler_cb_scr_menu_obj0(lv_event_t *e) {
         }
     }
 }
-
-static void event_handler_cb_scr_menu_btn_return_2(lv_event_t *e) {
-    lv_event_code_t code = lv_event_get_code(e);
-
-    if (code == LV_EVENT_RELEASED) {
-        lv_obj_clean(lv_scr_act());
-        main_screen();
-    }
-}
-
 
 
 void menu_screen(void) {

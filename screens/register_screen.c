@@ -21,7 +21,6 @@ typedef struct _objects_t {
     lv_obj_t *txt_reg_name_1;
     lv_obj_t *txt_password_1;
     lv_obj_t *txt_tag_data_1;
-    lv_obj_t *txt_photo_name;
 } objects_t;
 
 typedef struct {

@@ -2,7 +2,6 @@
 
 typedef struct _objects_t {
     lv_obj_t *scr_list;
-    lv_obj_t *obj7;
     lv_obj_t *tbl_users;
     lv_obj_t *btn_delete;
 } objects_t;

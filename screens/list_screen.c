@@ -3,9 +3,6 @@
 
 typedef struct _objects_t {
     lv_obj_t *scr_list;
-    lv_obj_t *obj7;
-    lv_obj_t *obj8;
-    lv_obj_t *btn_return_3;
     lv_obj_t *tbl_users;
 } objects_t;
 
