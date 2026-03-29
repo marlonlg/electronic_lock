@@ -315,7 +315,7 @@ void delete_screen(void){
                     lv_obj_t *obj = lv_button_create(parent_obj);
                     list_objects.btn_return_3 = obj;
                     lv_obj_set_pos(obj, 0, 0);
-                    lv_obj_set_size(obj, 40, 30);
+                    lv_obj_set_size(obj, 40, 35);
                     lv_obj_add_event_cb(obj, event_handler_cb_scr_list_btn_return_3, LV_EVENT_ALL, 0);
                     lv_obj_set_style_align(obj, LV_ALIGN_LEFT_MID, LV_PART_MAIN | LV_STATE_DEFAULT);
                     lv_obj_set_style_bg_color(obj, lv_color_hex(UI_COLOR_ACCENT_BLUE), LV_PART_ITEMS | LV_STATE_DEFAULT);

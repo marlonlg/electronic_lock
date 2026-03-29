@@ -429,7 +429,7 @@ void register_screen(void){
                         lv_obj_t *parent_obj = obj;
                         {
                             lv_obj_t *obj = lv_label_create(parent_obj);
-                            lv_obj_set_pos(obj, 0, 11);
+                            lv_obj_set_pos(obj, LV_PCT(0), LV_PCT(4));
                             lv_obj_set_size(obj, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
                             lv_obj_set_style_align(obj, LV_ALIGN_TOP_LEFT, LV_PART_MAIN | LV_STATE_DEFAULT);
                             lv_label_set_text(obj, "Nome:");
@@ -438,7 +438,7 @@ void register_screen(void){
                             // txt_reg_name_1
                             lv_obj_t *obj = lv_textarea_create(parent_obj);
                             register_objects.txt_reg_name_1 = obj;
-                            lv_obj_set_pos(obj, 0, LV_PCT(0));
+                            lv_obj_set_pos(obj, LV_PCT(13), LV_PCT(0));
                             lv_obj_set_size(obj, 200, 35);
                             lv_textarea_set_max_length(obj, 16);
                             lv_textarea_set_one_line(obj, true);
@@ -459,7 +459,7 @@ void register_screen(void){
                             // txt_password_1
                             lv_obj_t *obj = lv_textarea_create(parent_obj);
                             register_objects.txt_password_1 = obj;
-                            lv_obj_set_pos(obj, LV_PCT(0), LV_PCT(13));
+                            lv_obj_set_pos(obj, LV_PCT(13), LV_PCT(13));
                             lv_obj_set_size(obj, 200, 35);
                             lv_textarea_set_max_length(obj, 128);
                             lv_textarea_set_one_line(obj, true);
@@ -479,7 +479,7 @@ void register_screen(void){
                             // txt_tag_data_1
                             lv_obj_t *obj = lv_textarea_create(parent_obj);
                             register_objects.txt_tag_data_1 = obj;
-                            lv_obj_set_pos(obj, 0, LV_PCT(25));
+                            lv_obj_set_pos(obj, LV_PCT(13), LV_PCT(25));
                             lv_obj_set_size(obj, 200, 35);
                             lv_textarea_set_max_length(obj, 128);
                             lv_textarea_set_one_line(obj, true);
@@ -490,7 +490,7 @@ void register_screen(void){
                         }
                         {
                             lv_obj_t *obj = lv_label_create(parent_obj);
-                            lv_obj_set_pos(obj, LV_PCT(0), LV_PCT(38));
+                            lv_obj_set_pos(obj, LV_PCT(0), LV_PCT(40));
                             lv_obj_set_size(obj, 63, 16);
                             lv_obj_set_style_align(obj, LV_ALIGN_TOP_LEFT, LV_PART_MAIN | LV_STATE_DEFAULT);
                             lv_label_set_text(obj, "Foto:");
@@ -499,7 +499,7 @@ void register_screen(void){
                             // btn_register_1
                             lv_obj_t *obj = lv_button_create(parent_obj);
                             register_objects.btn_add_photo_1 = obj;
-                            lv_obj_set_pos(obj, 0, LV_PCT(44));
+                            lv_obj_set_pos(obj, LV_PCT(0), LV_PCT(42));
                             lv_obj_set_size(obj, 120, 120);
                             lv_obj_set_style_align(obj, LV_ALIGN_TOP_MID, LV_PART_MAIN | LV_STATE_DEFAULT);
                             lv_obj_add_event_cb(obj, event_handler_cb_scr_add_photo, LV_EVENT_RELEASED, NULL);

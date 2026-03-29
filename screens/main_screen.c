@@ -162,7 +162,7 @@ static void initialize_clock_labels(lv_obj_t *parent) {
     g_main_screen.btn_register = btn_register;
     lv_obj_set_size(btn_register, 117, 50);
     lv_obj_add_event_cb(btn_register, event_handler_register_btn, LV_EVENT_CLICKED, NULL);
-    lv_obj_align(btn_register, LV_ALIGN_BOTTOM_MID, 0, 18);
+    lv_obj_align(btn_register, LV_ALIGN_BOTTOM_MID, 0, 0);
     lv_obj_set_style_text_font(btn_register, &lv_font_montserrat_18, 0);
     lv_obj_set_style_bg_color(btn_register, lv_color_hex(UI_COLOR_ACCENT_BLUE), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_color(btn_register, lv_color_hex(UI_COLOR_TEXT_BLACK), LV_PART_MAIN | LV_STATE_DEFAULT);
