@@ -13,9 +13,6 @@
 
 typedef struct _objects_t {
     lv_obj_t *scr_register;
-    lv_obj_t *obj2;
-    lv_obj_t *obj3;
-    lv_obj_t *obj4;
     lv_obj_t *obj5;
     lv_obj_t *btn_register_1;
     lv_obj_t *btn_add_photo_1;
@@ -25,7 +22,6 @@ typedef struct _objects_t {
     lv_obj_t *txt_password_1;
     lv_obj_t *txt_tag_data_1;
     lv_obj_t *txt_photo_name;
-    lv_obj_t *btn_return_1;
 } objects_t;
 
 typedef struct {
@@ -58,18 +54,6 @@ static void show_hide_keyboard_cb(lv_event_t *e) {
         if(g_keyboard) {
             lv_obj_add_flag(g_keyboard, LV_OBJ_FLAG_HIDDEN);
         }
-    }
-}
-
-static void event_handler_cb_scr_register_btn_return_1(lv_event_t *e) {
-    lv_event_code_t code = lv_event_get_code(e);
-
-    if(code == LV_EVENT_RELEASED) {
-        if (g_register_poll_timer) {
-            lv_timer_pause(g_register_poll_timer);
-        }
-        lv_obj_clean(lv_scr_act());
-        menu_screen();
     }
 }
 
@@ -372,53 +356,7 @@ void register_screen(void){
             lv_obj_set_style_radius(obj, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
             {
                 lv_obj_t *parent_obj = obj;
-                {
-                    lv_obj_t *obj = lv_obj_create(parent_obj);
-                    register_objects.obj3 = obj;
-                    lv_obj_set_pos(obj, 0, 0);
-                    lv_obj_set_size(obj, LV_PCT(100), LV_PCT(10));
-                    lv_obj_remove_flag(obj, LV_OBJ_FLAG_SCROLLABLE);
-                    lv_obj_set_style_bg_color(obj, lv_color_hex(UI_COLOR_HEADER_BG_DARK), LV_PART_MAIN | LV_STATE_DEFAULT);
-                    lv_obj_set_style_border_color(obj, lv_color_hex(UI_COLOR_HEADER_BORDER_DARK), LV_PART_MAIN | LV_STATE_DEFAULT);
-                    lv_obj_set_style_border_opa(obj, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
-                    lv_obj_set_style_align(obj, LV_ALIGN_TOP_MID, LV_PART_MAIN | LV_STATE_DEFAULT);
-                    {
-                        lv_obj_t *parent_obj = obj;
-                        {
-                            lv_obj_t *obj = lv_label_create(parent_obj);
-                            register_objects.obj4 = obj;
-                            lv_obj_set_pos(obj, 0, 1);
-                            lv_obj_set_size(obj, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
-                            lv_obj_set_style_align(obj, LV_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
-                            lv_obj_set_style_text_color(obj, lv_color_hex(UI_COLOR_HEADER_TEXT_LIGHT), LV_PART_MAIN | LV_STATE_DEFAULT);
-                            lv_obj_set_style_text_font(obj, &lv_font_montserrat_20, LV_PART_MAIN | LV_STATE_DEFAULT);
-                            lv_label_set_text(obj, "Cadastro");
-                        }
-                        {
-                            // btn_return_1
-                            lv_obj_t *obj = lv_button_create(parent_obj);
-                            register_objects.btn_return_1 = obj;
-                            lv_obj_set_pos(obj, 0, 0);
-                            lv_obj_set_size(obj, 40, 35);
-                            lv_obj_add_event_cb(obj, event_handler_cb_scr_register_btn_return_1, LV_EVENT_ALL, 0);
-                            lv_obj_set_style_align(obj, LV_ALIGN_LEFT_MID, LV_PART_MAIN | LV_STATE_DEFAULT);
-                            lv_obj_set_style_bg_color(obj, lv_color_hex(UI_COLOR_ACCENT_BLUE), LV_PART_ITEMS | LV_STATE_DEFAULT);
-                            lv_obj_set_style_border_width(obj, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
-                            {
-                                lv_obj_t *parent_obj = obj;
-                                {
-                                    lv_obj_t *obj = lv_label_create(parent_obj);
-                                    lv_obj_set_pos(obj, 0, 0);
-                                    lv_obj_set_size(obj, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
-                                    lv_obj_set_style_align(obj, LV_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
-                                    lv_obj_set_style_text_color(obj, lv_color_hex(UI_COLOR_TEXT_WHITE), LV_PART_MAIN | LV_STATE_DEFAULT);
-                                    lv_obj_set_style_text_font(obj, &lv_font_montserrat_32, LV_PART_MAIN | LV_STATE_DEFAULT);
-                                    lv_label_set_text(obj, "<");
-                                }
-                            }
-                        }
-                    }
-                }
+                create_header(parent_obj, "Cadastro", menu_screen);
                 {
                     lv_obj_t *obj = lv_obj_create(parent_obj);
                     lv_obj_set_pos(obj, LV_PCT(0), LV_PCT(0));

@@ -29,6 +29,8 @@
 #define UI_COLOR_TEXT_WHITE 0x00FFFFFF
 #define UI_COLOR_TEXT_BLACK 0x00000000
 
+void create_header(lv_obj_t *parent_obj, const char *title, void (*return_callback)(void));
+
 void main_screen(void);
 void menu_screen(void);
 void list_screen(void);

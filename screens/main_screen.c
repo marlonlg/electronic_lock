@@ -11,8 +11,6 @@
 typedef struct {
     lv_obj_t *scr_main;
     lv_obj_t *btn_register;
-    lv_obj_t *header_bar;      // Renomeado de obj0
-    lv_obj_t *header_title;    // Renomeado de obj1
     lv_obj_t *label_date;
     lv_obj_t *label_time;
     lv_timer_t *timer_clock;
@@ -29,7 +27,6 @@ static void timer_update_clock(lv_timer_t *timer);
 static void timer_poll_tag(lv_timer_t *timer);
 static void update_label_date(lv_obj_t *label);
 static void update_label_time(lv_obj_t *label);
-static lv_obj_t* create_header_bar(lv_obj_t *parent);
 static lv_obj_t* create_content_container(lv_obj_t *parent);
 static void initialize_clock_labels(lv_obj_t *parent);
 static int jsoneq(const char *json, jsmntok_t *tok, const char *s);
@@ -64,7 +61,7 @@ void main_screen(void) {
     lv_obj_set_style_text_color(screen, lv_color_hex(UI_COLOR_TEXT_WHITE), LV_PART_MAIN | LV_STATE_DEFAULT);
 
     // Constrói a UI
-    create_header_bar(screen);
+    create_header(screen, "Tela Principal", NULL);
     initialize_clock_labels(screen);
 
     // Cria o timer para atualização do relógio
@@ -313,28 +310,6 @@ static lv_obj_t* create_content_container(lv_obj_t *parent) {
     lv_obj_set_style_border_width(container, 0, 0);
 
     return container;
-}
-
-// --- Cria a Barra de Cabeçalho Superior --- //
-static lv_obj_t* create_header_bar(lv_obj_t *parent) {
-    lv_obj_t *bar = lv_obj_create(parent);
-    g_main_screen.header_bar = bar;
-    lv_obj_set_size(bar, LV_PCT(100), LV_PCT(10));
-    lv_obj_remove_flag(bar, LV_OBJ_FLAG_SCROLLABLE);
-    lv_obj_align(bar, LV_ALIGN_TOP_MID, 0, 0);
-    lv_obj_set_style_bg_color(bar, lv_color_hex(UI_COLOR_HEADER_BG_DARK), 0);
-    lv_obj_set_style_border_color(bar, lv_color_hex(UI_COLOR_HEADER_BORDER_DARK), 0);
-    lv_obj_set_style_border_width(bar, 1, 0);
-
-    // Título do cabeçalho
-    lv_obj_t *title = lv_label_create(bar);
-    g_main_screen.header_title = title;
-    lv_label_set_text(title, "Home");
-    lv_obj_set_style_text_color(title, lv_color_hex(UI_COLOR_TEXT_WHITE), 0);
-    lv_obj_set_style_text_font(title, &lv_font_montserrat_20, 0);
-    lv_obj_align(title, LV_ALIGN_CENTER, 0, 1);
-
-    return bar;
 }
 
 // --- Handler do Botão "Cadastrar" --- //
