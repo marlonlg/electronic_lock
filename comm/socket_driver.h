@@ -8,5 +8,6 @@
 
 int lvgl_socket_send(const char *msg);
 int lvgl_socket_recv(char *buf, size_t bufsize);
+int lvgl_socket_recv_timeout(char *buf, size_t bufsize, int timeout_ms);
 
 #endif // SOCKET_DRIVER_H
