@@ -1,13 +1,6 @@
-
-import sqlite3
 import os
-from typing import Dict, Any, Optional, List
-
 import sqlite3
 from typing import Dict, Any, Optional, List
-
-
-
 
 class UserRecords:
     def __init__(self, db_name: str = "records.db"):
@@ -28,7 +21,8 @@ class UserRecords:
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 usuario TEXT NOT NULL UNIQUE,
                 senha TEXT NOT NULL,
-                tag_rfid INTEGER UNIQUE
+                tag_rfid TEXT UNIQUE,
+                img_path TEXT
             )
         ''')
         conn.commit()
@@ -40,6 +34,16 @@ class UserRecords:
         self.conn = sqlite3.connect(self.db_name)
         self.conn.row_factory = sqlite3.Row  # Permite acesso por nome de coluna
         self.cursor = self.conn.cursor()
+        self._migrate_schema()
+
+    def _migrate_schema(self):
+        """Garante compatibilidade com bancos criados antes do campo img_path."""
+        self.cursor.execute("PRAGMA table_info(records)")
+        columns = {row["name"] for row in self.cursor.fetchall()}
+
+        if "img_path" not in columns:
+            self.cursor.execute("ALTER TABLE records ADD COLUMN img_path TEXT")
+            self.conn.commit()
 
     def _execute_query(self, query: str, params: tuple = ()) -> Optional[sqlite3.Cursor]:
         """Executa uma query genérica com tratamento de erro e commit automático."""
@@ -67,8 +71,13 @@ class UserRecords:
             if not required_fields.issubset(data.keys()):
                 raise ValueError(f"Campos obrigatórios faltando: {required_fields - set(data.keys())}")
 
-            query = "INSERT INTO records (usuario, senha, tag_rfid) VALUES (?, ?, ?)"
-            self._execute_query(query, (data["usuario"], data["senha"], data["tag_rfid"]))
+            query = "INSERT INTO records (usuario, senha, tag_rfid, img_path) VALUES (?, ?, ?, ?)"
+            self._execute_query(query, (
+                data["usuario"],
+                data["senha"],
+                str(data["tag_rfid"]),
+                data.get("img_path", ""),
+            ))
             return self.cursor.lastrowid
         except Exception as e:
             print(e)
@@ -109,6 +118,13 @@ class UserRecords:
         query = "SELECT * FROM records"
         self.cursor.execute(query)
         return [dict(row) for row in self.cursor.fetchall()]
+
+    def fetch_by_rfid(self, tag_rfid: str) -> Optional[Dict[str, Any]]:
+        """Busca um usuário pelo RFID e retorna como dicionário."""
+        query = "SELECT * FROM records WHERE tag_rfid = ?"
+        self.cursor.execute(query, (str(tag_rfid),))
+        row = self.cursor.fetchone()
+        return dict(row) if row else None
 
     def close(self):
         """Fecha a conexão."""
