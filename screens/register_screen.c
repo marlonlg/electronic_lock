@@ -169,7 +169,7 @@ static void event_handler_cb_scr_add_photo(lv_event_t *e) {
         lv_obj_set_size(file_explorer, LV_PCT(100), LV_PCT(100));
         lv_file_explorer_show_back_button(file_explorer, false);
         lv_file_explorer_set_sort(file_explorer, LV_EXPLORER_SORT_NONE);
-        lv_file_explorer_open_dir(file_explorer, "A:/home/marlon/Downloads");
+        lv_file_explorer_open_dir(file_explorer, "A:/root");
         lv_obj_add_event_cb(file_explorer, file_explorer_event_handler, LV_EVENT_ALL, NULL);
 
         lv_obj_t * header = lv_file_explorer_get_header(file_explorer);
@@ -318,7 +318,7 @@ void lv_example_file_explorer(void)
     /*Before custom sort, please set the default sorting to NONE. The default is NONE.*/
     lv_file_explorer_set_sort(file_explorer, LV_EXPLORER_SORT_NONE);
 
-    lv_file_explorer_open_dir(file_explorer, "A:/home/marlon/Downloads");
+    lv_file_explorer_open_dir(file_explorer, "A:/root");
 
 
 

@@ -79,7 +79,7 @@ void list_screen(void){
     static jsmntok_t t[128]; /* We expect no more than 128 tokens*/
     jsmn_init(&p);
 
-    lv_obj_clean(lv_scr_act());
+    // lv_obj_clean(lv_scr_act());
     lv_obj_t *obj = lv_obj_create(lv_screen_active());
     list_objects.scr_list = obj;
     lv_obj_set_pos(obj, 0, 0);
